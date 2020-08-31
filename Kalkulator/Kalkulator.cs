@@ -12,143 +12,92 @@ namespace Kalkulator
 {
     public partial class Kalkulator : Form
     {
-
-        string liczbaPierwsza, liczbaDruga;
-        char dzialanie = ' ' ;
-
+        Double wynik = 0;
+        string rodzajDzialania = "";
+        bool czyUruchomionoDzialanie = false;
         public Kalkulator()
         {
             InitializeComponent();
         }
 
 
-        private void btnWyczysc_Click(object sender, EventArgs e)
+        private void num_click(object sender, EventArgs e)
         {
-            dzialanie = ' ';
-            tbWyswietlacz.Text=" ";
-        }
-
-        private void btnPrzecinek_Click(object sender, EventArgs e)
-        {
-            dzialanie = ',';
-            tbWyswietlacz.Text = "";
-        }
-        private void btnWynik_Click(object sender, EventArgs e)
-        {
-            switch (dzialanie)
+            if ((tbWyswietlacz.Text == "0")||czyUruchomionoDzialanie)
+                tbWyswietlacz.Clear();
+            Button przycisk = (Button)sender;
+            if (przycisk.Text == ",")
             {
-                case ('+'):
-                    tbWyswietlacz.Text = (int.Parse(liczbaPierwsza) + int.Parse(liczbaDruga)).ToString();
-                    break;
-                case ('-'):
-                    tbWyswietlacz.Text = (int.Parse(liczbaPierwsza) - int.Parse(liczbaDruga)).ToString();
-                    break;
-                case ('*'):
-                    tbWyswietlacz.Text = (int.Parse(liczbaPierwsza) * int.Parse(liczbaDruga)).ToString();
-                    break;
-                case ('/'):
-                    tbWyswietlacz.Text = (int.Parse(liczbaPierwsza) / int.Parse(liczbaDruga)).ToString();
-                    break;
-                case ('!'):
-                    int wynikSilni = 1;
-                    for (int i = 1; i <= int.Parse(liczbaPierwsza); i++)
-                        wynikSilni *= i;
-                    tbWyswietlacz.Text = (wynikSilni).ToString();
-                    break;
-                case ('%'):
-                    tbWyswietlacz.Text = (int.Parse(liczbaPierwsza) * int.Parse(liczbaDruga)/100).ToString();
-                    break;
+                if (!tbWyswietlacz.Text.Contains(","))
+
+                    tbWyswietlacz.Text = tbWyswietlacz.Text + przycisk.Text;
             }
-                    liczbaPierwsza = "";
-                    liczbaDruga = "";
-                    dzialanie = ' ';
+            else
+                tbWyswietlacz.Text = tbWyswietlacz.Text + przycisk.Text;
+            czyUruchomionoDzialanie = false;
         }
 
-        private void btnDziel_Click(object sender, EventArgs e)
+        private void operator_click(object sender, EventArgs e)
         {
-            dzialanie = '/';
-            tbWyswietlacz.Text = "";
-        }
-        private void btnMnoz_Click(object sender, EventArgs e)
-        {
-            dzialanie = '*';
-            tbWyswietlacz.Text = "";
-        }
-        private void btnSilnia_Click(object sender, EventArgs e)
-        {
-            dzialanie = '!';
-            tbWyswietlacz.Text = "";
-        }
-        private void btnProcent_Click(object sender, EventArgs e)
-        {
-            dzialanie = '%';
-            tbWyswietlacz.Text = "";
-        }
-        private void btnMinus_Click(object sender, EventArgs e)
-        {
-            dzialanie = '-';
-            tbWyswietlacz.Text = "";
-        }
-        private void btnPlus_Click(object sender, EventArgs e)
-        {
-            dzialanie = '+';
-            tbWyswietlacz.Text = "";
-        }
-        private void btn0_Click(object sender, EventArgs e)
-        {
-            Dzialanie(0);
-        }
-        private void btn1_Click(object sender, EventArgs e)
-        {
-            Dzialanie(1);
-        }
-        private void btn2_Click(object sender, EventArgs e)
-        {
-            Dzialanie(2);
-        }
-        private void btn3_Click(object sender, EventArgs e)
-        {
-            Dzialanie(3);
-        }
-        private void btn4_Click(object sender, EventArgs e)
-        {
-            Dzialanie(4);
-        }
-        private void btn5_Click(object sender, EventArgs e)
-        {
-            Dzialanie(5);
-        }
-        private void btn6_Click(object sender, EventArgs e)
-        {
-            Dzialanie(6);
-        }
-        private void btn7_Click(object sender, EventArgs e)
-        {
-            Dzialanie(7);
-        }
-        private void btn8_Click(object sender, EventArgs e)
-        {
-            Dzialanie(8);
-        }
-        private void btn9_Click(object sender, EventArgs e)
-        {
-            Dzialanie(9);
-        }
-
-        private void Dzialanie(int liczba)
-        {
-            if (dzialanie == ' ')
+            Button przycisk = (Button)sender;
+            if (wynik != 0)
             {
-                liczbaPierwsza += liczba;
-                tbWyswietlacz.Text = liczbaPierwsza;
+                btnOblicz.PerformClick();
+
+                rodzajDzialania = przycisk.Text;
+                czyUruchomionoDzialanie = true;
+                lbWykonywanaOperacja.Text = wynik + " " + rodzajDzialania;
             }
             else
             {
-                liczbaDruga += liczba;
-                tbWyswietlacz.Text = liczbaDruga;
+                rodzajDzialania = przycisk.Text;
+                wynik = Double.Parse(tbWyswietlacz.Text);
+                czyUruchomionoDzialanie = true;
+                lbWykonywanaOperacja.Text = wynik + " " + rodzajDzialania;
             }
         }
 
-     
+        private void wyczysc_Click(object sender, EventArgs e)
+        {
+
+                tbWyswietlacz.Text = "0";
+            
+        }
+
+        private void wyzeruj_Click(object sender, EventArgs e)
+        {
+            tbWyswietlacz.Text = "0";
+            wynik = 0;
+        }
+
+        private void btnOblicz_Click(object sender, EventArgs e)
+        {
+            switch (rodzajDzialania)
+            {
+                case "+":
+                    tbWyswietlacz.Text = (wynik + Double.Parse(tbWyswietlacz.Text)).ToString();
+                    break;
+                case "-":
+                    tbWyswietlacz.Text = (wynik - Double.Parse(tbWyswietlacz.Text)).ToString();
+                    break;
+                case "×":
+                    tbWyswietlacz.Text = (wynik * Double.Parse(tbWyswietlacz.Text)).ToString();
+                    break;
+                case "÷":
+                    tbWyswietlacz.Text = (wynik / Double.Parse(tbWyswietlacz.Text)).ToString();
+                    break;
+                case "%":
+                    tbWyswietlacz.Text = (wynik + Double.Parse(tbWyswietlacz.Text)).ToString();
+                    break;
+                case "x^y":
+                    tbWyswietlacz.Text = (wynik + Double.Parse(tbWyswietlacz.Text)).ToString();
+                    break;
+                case "n!":
+                    tbWyswietlacz.Text = (wynik + Double.Parse(tbWyswietlacz.Text)).ToString();
+                    break;
+                default: break;
+
+            }
+        }
     }
 }
