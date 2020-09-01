@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Kalkulator
@@ -19,7 +13,6 @@ namespace Kalkulator
         {
             InitializeComponent();
         }
-
 
         private void num_click(object sender, EventArgs e)
         {
@@ -43,7 +36,6 @@ namespace Kalkulator
             if (wynik != 0)
             {
                 btnOblicz.PerformClick();
-
                 rodzajDzialania = przycisk.Text;
                 czyUruchomionoDzialanie = true;
                 lbWykonywanaOperacja.Text = wynik + " " + rodzajDzialania;
@@ -69,6 +61,14 @@ namespace Kalkulator
             tbWyswietlacz.Text = "0";
             wynik = 0;
         }
+        private static int silnia(int i)
+        {
+            if (i < 1)
+                return 1;
+            else
+                return i * silnia(i - 1);
+        }
+
 
         private void btnOblicz_Click(object sender, EventArgs e)
         {
@@ -87,17 +87,18 @@ namespace Kalkulator
                     tbWyswietlacz.Text = (wynik / Double.Parse(tbWyswietlacz.Text)).ToString();
                     break;
                 case "%":
-                    tbWyswietlacz.Text = (wynik + Double.Parse(tbWyswietlacz.Text)).ToString();
+                    tbWyswietlacz.Text = (wynik/100*Double.Parse(tbWyswietlacz.Text)).ToString();
                     break;
                 case "x^y":
-                    tbWyswietlacz.Text = (wynik + Double.Parse(tbWyswietlacz.Text)).ToString();
                     break;
                 case "n!":
-                    tbWyswietlacz.Text = (wynik + Double.Parse(tbWyswietlacz.Text)).ToString();
+                    tbWyswietlacz.Text = (silnia(Convert.ToInt32(wynik))).ToString();
                     break;
                 default: break;
 
             }
+            wynik = Double.Parse(tbWyswietlacz.Text);
+            lbWykonywanaOperacja.Text= "";
         }
     }
 }

@@ -225,7 +225,7 @@
             this.btnDziel.Name = "btnDziel";
             this.btnDziel.Size = new System.Drawing.Size(50, 48);
             this.btnDziel.TabIndex = 11;
-            this.btnDziel.Text = " ÷";
+            this.btnDziel.Text = "÷";
             this.btnDziel.UseVisualStyleBackColor = true;
             this.btnDziel.Click += new System.EventHandler(this.operator_click);
             // 
