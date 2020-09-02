@@ -49,16 +49,19 @@ namespace Kalkulator
             }
         }
 
-        private void wyczysc_Click(object sender, EventArgs e)
+        private void popraw_Click(object sender, EventArgs e)
         {
-
-                tbWyswietlacz.Text = "0";
-            
+            int lenght = tbWyswietlacz.TextLength - 1;
+            string text = tbWyswietlacz.Text;
+            tbWyswietlacz.Clear();
+            for (int i = 0; i < lenght; i++)
+                tbWyswietlacz.Text = tbWyswietlacz.Text+text[i];
         }
 
         private void wyzeruj_Click(object sender, EventArgs e)
         {
             tbWyswietlacz.Text = "0";
+            lbWykonywanaOperacja.Text = "";
             wynik = 0;
         }
         private static int silnia(int i)
@@ -76,6 +79,7 @@ namespace Kalkulator
             {
                 case "+":
                     tbWyswietlacz.Text = (wynik + Double.Parse(tbWyswietlacz.Text)).ToString();
+                    tbWyswietlacz.Focus();
                     break;
                 case "-":
                     tbWyswietlacz.Text = (wynik - Double.Parse(tbWyswietlacz.Text)).ToString();
@@ -90,15 +94,17 @@ namespace Kalkulator
                     tbWyswietlacz.Text = (wynik/100*Double.Parse(tbWyswietlacz.Text)).ToString();
                     break;
                 case "x^y":
+                    tbWyswietlacz.Text = (Math.Pow(wynik, Double.Parse(tbWyswietlacz.Text))).ToString();
                     break;
                 case "n!":
                     tbWyswietlacz.Text = (silnia(Convert.ToInt32(wynik))).ToString();
                     break;
-                default: break;
+                default:
+                    break;
 
             }
-            wynik = Double.Parse(tbWyswietlacz.Text);
-            lbWykonywanaOperacja.Text= "";
+          //  wynik = Double.Parse(tbWyswietlacz.Text);
+            lbWykonywanaOperacja.Text= " ";
         }
     }
 }

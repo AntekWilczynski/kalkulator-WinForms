@@ -291,9 +291,9 @@
             this.btnWyczyscTb.Name = "btnWyczyscTb";
             this.btnWyczyscTb.Size = new System.Drawing.Size(93, 50);
             this.btnWyczyscTb.TabIndex = 24;
-            this.btnWyczyscTb.Text = "CE";
+            this.btnWyczyscTb.Text = "←";
             this.btnWyczyscTb.UseVisualStyleBackColor = true;
-            this.btnWyczyscTb.Click += new System.EventHandler(this.wyczysc_Click);
+            this.btnWyczyscTb.Click += new System.EventHandler(this.popraw_Click);
             // 
             // btnPotega
             // 
