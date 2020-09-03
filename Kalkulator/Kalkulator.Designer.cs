@@ -310,8 +310,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(330, 369);
+            this.ClientSize = new System.Drawing.Size(334, 369);
             this.Controls.Add(this.btnPotega);
             this.Controls.Add(this.btnWyczyscTb);
             this.Controls.Add(this.btnWyzeruj);
@@ -349,6 +350,7 @@
 
         #endregion
 
+        private System.Windows.Forms.Label lbWykonywanaOperacja;
         private System.Windows.Forms.TextBox tbWyswietlacz;
         private System.Windows.Forms.Button btn7;
         private System.Windows.Forms.Button btn8;
@@ -368,7 +370,6 @@
         private System.Windows.Forms.Button btnProcent;
         private System.Windows.Forms.Button btnPrzecinek;
         private System.Windows.Forms.Button btnSilnia;
-        private System.Windows.Forms.Label lbWykonywanaOperacja;
         private System.Windows.Forms.Button btnWyzeruj;
         private System.Windows.Forms.Button btnWyczyscTb;
         private System.Windows.Forms.Button btnPotega;

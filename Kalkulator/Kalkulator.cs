@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace Kalkulator
@@ -13,7 +12,6 @@ namespace Kalkulator
         {
             InitializeComponent();
         }
-
         private void num_click(object sender, EventArgs e)
         {
             if ((tbWyswietlacz.Text == "0")||czyUruchomionoDzialanie)
@@ -29,7 +27,6 @@ namespace Kalkulator
                 tbWyswietlacz.Text = tbWyswietlacz.Text + przycisk.Text;
             czyUruchomionoDzialanie = false;
         }
-
         private void operator_click(object sender, EventArgs e)
         {
             Button przycisk = (Button)sender;
@@ -48,7 +45,6 @@ namespace Kalkulator
                 lbWykonywanaOperacja.Text = wynik + " " + rodzajDzialania;
             }
         }
-
         private void popraw_Click(object sender, EventArgs e)
         {
             int lenght = tbWyswietlacz.TextLength - 1;
@@ -57,7 +53,6 @@ namespace Kalkulator
             for (int i = 0; i < lenght; i++)
                 tbWyswietlacz.Text = tbWyswietlacz.Text+text[i];
         }
-
         private void wyzeruj_Click(object sender, EventArgs e)
         {
             tbWyswietlacz.Text = "0";
@@ -71,8 +66,6 @@ namespace Kalkulator
             else
                 return i * silnia(i - 1);
         }
-
-
         private void btnOblicz_Click(object sender, EventArgs e)
         {
             switch (rodzajDzialania)
@@ -101,10 +94,7 @@ namespace Kalkulator
                     break;
                 default:
                     break;
-
-            }
-          //  wynik = Double.Parse(tbWyswietlacz.Text);
-            lbWykonywanaOperacja.Text= " ";
+            }         
         }
     }
 }
